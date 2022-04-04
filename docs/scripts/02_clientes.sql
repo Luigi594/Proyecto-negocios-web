@@ -1,4 +1,4 @@
-CREATE TABLE `clientes` (
+/* CREATE TABLE `clientes` (
   `clientid` bigint(15) NOT NULL AUTO_INCREMENT,
   `clientname` varchar(128) DEFAULT NULL,
   `clientgender` char(3) DEFAULT NULL,
@@ -12,3 +12,6 @@ CREATE TABLE `clientes` (
   `clientusercreates` bigint(10) DEFAULT NULL,
   PRIMARY KEY (`clientid`)
 ) ENGINE=InnoDB;
+ */
+
+ /**los scripts que vaamos a usar*/
