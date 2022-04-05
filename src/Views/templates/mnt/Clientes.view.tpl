@@ -9,24 +9,26 @@
             <td>RTN</td>
             <td>Fecha de Nacimiento</td>
             <td>Estado</td>
-            <td><a>Nuevo</a></td>
+            <td><a href="index.php?page=mnt.clientes.cliente&mode=INS&idCliente=0">Nuevo</a></td>
         </tr>
     </thead>
     <tbody>
         {{foreach clientes}}
             <tr>
                 <td>
-                    <a>{{nombre}}</a>
+                    <a href="index.php?page=mnt.clientes.cliente&mode=INS&idCliente={{idCliente}}">{{nombre}}</a>
                 </td>
-                <td>{{apellido}}</td>
+                <td>
+                    <a href="index.php?page=mnt.clientes.cliente&mode=INS&idCliente={{idCliente}}">{{apellido}}</a>
+                </td>
                 <td>{{telefono}}</td>
                 <td>{{rtn}}</td>
                 <td>{{fechaNacimiento}}</td>
                 <td>{{estado}}</td>
                 <td>
-                    <a>Editar</a>
+                    <a href="index.php?page=mnt.clientes.cliente&mode=UPD&idCliente={{idCliente}}">Editar</a>
                     &nbsp; 
-                    <a>Eliminar</a>
+                    <a href="index.php?page=mnt.clientes.cliente&mode=DEL&idCliente={{idCliente}}">Eliminar</a>
                 </td>
             </tr>
         {{endfor clientes}}

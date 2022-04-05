@@ -29,6 +29,7 @@ class Cliente extends PublicController{
         "telefono" => 0.00,
         "rtn" => "",
         "fechaNacimiento" => "",
+        "estado" => "",
         "modeDsc" => "",
         "readonly" => "readonly",
         "isInsert" => false,
