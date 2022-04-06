@@ -18,7 +18,7 @@
                 <td>
                     <a href="index.php?page=mnt.puestos.puesto&mode=UPD&idPuesto={{idPuesto}}">Editar</a>
                     &nbsp; 
-                    <a href="index.php?page=mnt.puestos.puesto&mode=DEL&idPuestos={{idPuesto}}">Eliminar</a>
+                    <a href="index.php?page=mnt.puestos.puesto&mode=DEL&idPuesto={{idPuesto}}">Eliminar</a>
                 </td>
             </tr>
         {{endfor puestos}}

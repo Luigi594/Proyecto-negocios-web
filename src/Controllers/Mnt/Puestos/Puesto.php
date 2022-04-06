@@ -34,7 +34,7 @@ class Puesto extends PublicController{
             \Utilities\Site::redirectToWithMsg('index.php?page=mnt.puestos.puestos', 
             'Sucedio un error al cargar la pagina.'); 
         }
-        if($this->_viewData["mode"]!=="INS" && intval($this->_viewData["idPuestos"], 10)!==0){
+        if($this->_viewData["mode"]!=="INS" && intval($this->_viewData["idPuesto"], 10)!==0){
             $this->_viewData["mode"]!=="DSP";
         }
     }
@@ -42,15 +42,6 @@ class Puesto extends PublicController{
     private function handlePost()
     {
         \Utilities\ArrUtils::mergeFullArrayTo($_POST, $this->_viewData);
-        if(!isset($_SESSION["puesto_crsxToken"]) 
-        || $_SESSION["puesto_crsxToken"]!== $this->_viewData["crsxToken"])
-        {
-            unset($_SESSION["puesto_crsxToken"]);
-            \Utilities\Site::redirectToWithMsg(
-                'index.php?page=mnt.puestos.puestos', 
-                'Ocurrio un error, no se puede procesar el formulario'
-            );
-        }
         $this->_viewData["idPuesto"] = intval($this->_viewData["idPuesto"], 10);
 
         
@@ -74,7 +65,7 @@ class Puesto extends PublicController{
                 );
                 if($result){
                     \Utilities\Site::redirectToWithMsg(
-                        "index.php?page=mnt.recetas.recetas",
+                        "index.php?page=mnt.puestos.puestos",
                         "Puesto modificado correctamente"
                     );
                 }
@@ -85,7 +76,7 @@ class Puesto extends PublicController{
                 );
                 if($result){
                     \Utilities\Site::redirectToWithMsg(
-                        "index.php?page=mnt.recetas.recetas",
+                        "index.php?page=mnt.puestos.puestos",
                         "Puesto eliminado correctamente"
                     );
                 }
@@ -103,25 +94,14 @@ class Puesto extends PublicController{
             $this->_viewData["modeDsc"] = 
                 $this->_modeStrings[$this->_viewData["mode"]];
         }else{
-            $tmpReceta = \Dao\Mnt\Puestos::obtenerPorPtsId(intval($this->_viewData["idPuesto"], 10));
-            \Utilities\ArrUtils::mergeFullArrayTo($tmpReceta, $this->_viewData);
+            $tmpPuesto = \Dao\Mnt\Puestos::obtenerPorPtsId(intval($this->_viewData["idPuesto"], 10));
+            \Utilities\ArrUtils::mergeFullArrayTo($tmpPuesto, $this->_viewData);
             $this->_viewData["modeDsc"] = sprintf(
                 $this->_modeStrings[$this->_viewData["mode"]],
                 $this->_viewData["descripcion"],
                 $this->_viewData["idPuesto"]
             );
         }
-
-        $this->_viewData["estadoOptions"] = 
-        \Utilities\ArrUtils::toOptionsArray(
-            $this->_estadoOptions,
-            'value',
-            'text',
-            'select',
-            $this->_viewData['estado']
-        );
-        $this->_viewData["crsxToken"] = md5(time()."puestos");
-        $_SESSION["receta_crsxToken"] = $this->_viewData["crsxToken"];
     }
 
     public function run(): void{
