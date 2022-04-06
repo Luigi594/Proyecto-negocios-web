@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <td>Código</td>
       <td>Código Cliente</td>
       <td>Codigo Producto</td>
       <td>Cantidad</td>
@@ -13,6 +14,7 @@
   <tbody>
     {{foreach carritos}}
     <tr>
+      <td>{{id}}</td>
       <td>{{clienteId}}</td>
       <td>{{productoId}}</td>
       <td>{{cantidad}}</td>

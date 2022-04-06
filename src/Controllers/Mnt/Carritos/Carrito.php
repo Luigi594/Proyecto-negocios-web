@@ -143,6 +143,6 @@ class Carrito extends PublicController
             $this->handlePost();
         }
         $this->prepareViewData();
-        Renderer::render('mnt/carritos/carrito', $this->_viewData);
+        Renderer::render('mnt/carritos', $this->_viewData);
     }
 }
