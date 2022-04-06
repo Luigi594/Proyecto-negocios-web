@@ -12,6 +12,7 @@
                 <th>Fecha de Nacimiento</th>
                 <th>Estado</th>
                 <th>Acciones</th>
+                <th><button class="btn primary" id="btnNuevo">Nuevo</button></th>
             </tr>
         </thead>
         <tbody class="bg-white">
@@ -26,7 +27,6 @@
                     <td>{{fechaNacimiento}}</td>
                     <td>{{estado}}</td>
                     <td>
-                        <button class="btn primary" id="btnNuevo">Nuevo</button>
                         &nbsp; &nbsp; 
                         <a href="index.php?page=mnt.clientes.cliente&mode=UPD&idCliente={{idCliente}}">Editar</a>
                         &nbsp; &nbsp; 
