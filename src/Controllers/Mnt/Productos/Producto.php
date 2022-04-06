@@ -17,6 +17,7 @@ class Producto extends PublicController{
         "ACT" => "Activo",
         "INA" => "Inactivo"
     );
+    
     private $_recetasOptions = array(
         "1" => "Whopper",
         "2" => "whopper JR",
@@ -29,6 +30,7 @@ class Producto extends PublicController{
         "9" => "Refresco Te la sor",
         "10" => "El sorPresa Burgero"
     );
+
     private $_viewData = array(
         "mode" => "INS",
         "idProducto" => 0,
