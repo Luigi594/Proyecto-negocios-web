@@ -23,7 +23,7 @@ class Empleados extends Table
         );
     }
 
-    public static function nuevoEmpleado($nombre, $apellido, $telefono, $fechaNacimiento, $estado, $puestoId){
+    public static function nuevoEmpleado($nombre, $apellido, $puestoId, $telefono, $fechaNacimiento, $estado){
 
         $sqlstr = "INSERT INTO empleados(nombre, apellido, telefono, fechaNacimiento, estado, puestoId)
         VALUES(:nombre, :apellido, :telefono, :fechaNacimiento, :estado, :puestoId); ";
@@ -41,35 +41,32 @@ class Empleados extends Table
         );
     }
 
-    public static function modificarEmpleado($nombre, $apellido, $telefono, $rtn, $fechaNacimiento, $estado, $idEmpleado){
+    public static function modificarEmpleado($nombre, $apellido, $puestoId, $telefono,  $fechaNacimiento, $estado, $idEmpleado){
 
-        $sqlstr = "UPDATE clientes SET nombre = :nombre, apellido = :apellido, 
-        telefono = :telefono, rtn = :rtn, 
-        fechaNacimiento = :fechaNacimiento,
-        estado = :estado
-        WHERE idCliente = :idCliente; ";
+        $sqlstr = "UPDATE empleados SET puestoId = :puestoId, nombre = :nombre, apellido = :apellido, telefono = :telefono, rtn = :rtn, fechaNacimiento = :fechaNacimiento,estado = :estado
+        WHERE idEmpleado = :idEmpleado; ";
 
         return self::executeNonQuery(
             $sqlstr,
             array(
                 "nombre" => $nombre,
                 "apellido" => $apellido,
+                "puestoId" => $puestoId,
                 "telefono" => $telefono,
-                "rtn" => $rtn,
                 "fechaNacimiento" => $fechaNacimiento,
                 "estado" => $estado,
-                "idCliente" => $idCliente
+                "idEmpleado" => $idEmpleado
             )
         );
     }
 
-    public static function eliminarEmpleado($idCliente){
+    public static function eliminarEmpleado($idEmpleado){
 
-        $sqlstr = "DELETE FROM clientes WHERE idCliente = :idCliente; ";
+        $sqlstr = "DELETE FROM empleados WHERE idEmpleado = :idEmpleado; ";
 
         return self::executeNonQuery(
             $sqlstr,
-            array("idCliente" => $idCliente)
+            array("idEmpleado" => $idEmpleado)
         );
     }
 }

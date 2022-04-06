@@ -7,6 +7,14 @@ use Views\Renderer;
 
 class Empleado extends PublicController{
 
+    private $puestosIdOptions = array(
+        "1" => "Gerente",
+        "2" => "Sub Gerente",
+        "3" => "Cajero",
+        "4" => "Jefe de Cocina",
+        "5" => "Cocinero"
+    );
+
     private $modeString = array(
         "INS" => "Nuevo Empleado",
         "UPD" => "Editar Empleado  %s (%s)",
@@ -24,7 +32,8 @@ class Empleado extends PublicController{
 
         "mode" => "INS",
         "idEmpleado" => 0,
-        "puestoID" => 0,
+        "puestosIdOptions" => [],
+        "puestoId" => 0,
         "nombre" => "",
         "apellido" => "",
         "telefono" => 0.00,
@@ -38,13 +47,7 @@ class Empleado extends PublicController{
         "estadoOpciones" => []
     );
 
-    private $_empleadoIdOptions = array(
-        "1" => "Gerente",
-        "2" => "Sub Gerente",
-        "3" => "Cajero",
-        "4" => "Jefe de Cocina",
-        "5" => "Cocinero"
-    );
+    
 
     private function init(){
 
@@ -112,10 +115,11 @@ class Empleado extends PublicController{
                     $result = \Dao\Mnt\Empleados::modificarEmpleado(
                         $this -> viewData["nombre"],
                         $this -> viewData["apellido"],
-                        $this -> viewData["empleadoId"],
+                        $this -> viewData["puestoId"],
                         $this -> viewData["telefono"],
                         $this -> viewData["fechaNacimiento"],
                         $this -> viewData["estado"],
+                        $this -> viewData["idEmpleado"]
                     );
 
                     if($result){
@@ -145,6 +149,7 @@ class Empleado extends PublicController{
 
     private function prepareViewData(){
 
+
         if($this -> viewData["mode"] == 'INS'){
             
             $this -> viewData["modeDsc"] = $this -> modeString[$this -> viewData["mode"]];
@@ -170,6 +175,7 @@ class Empleado extends PublicController{
             );
         }
 
+
         $this -> viewData["estadoOpciones"] =
             
         \Utilities\ArrUtils::toOptionsArray(
@@ -178,6 +184,15 @@ class Empleado extends PublicController{
             'text',
             'selected',
             $this -> viewData["estado"]
+        );
+
+        $this-> viewData["puestosIdOptions"] = 
+        \Utilities\ArrUtils::toOptionsArray(
+            $this->puestosIdOptions,
+            'value',
+            'text',
+            'select',
+            $this-> viewData['puestoId']
         );
     }
 
