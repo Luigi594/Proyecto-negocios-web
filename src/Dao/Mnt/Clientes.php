@@ -43,11 +43,10 @@ class Clientes extends Table
 
     public static function modificarCliente($nombre, $apellido, $telefono, $rtn, $fechaNacimiento, $estado, $idCliente){
 
-        $sqlstr = "UPDATE clientes SET
-        nombre = :nombre, apellido = :apellido, 
+        $sqlstr = "UPDATE clientes SET nombre = :nombre, apellido = :apellido, 
         telefono = :telefono, rtn = :rtn, 
         fechaNacimiento = :fechaNacimiento,
-        estado = :estado,
+        estado = :estado
         WHERE idCliente = :idCliente; ";
 
         return self::executeNonQuery(

@@ -94,7 +94,7 @@ class Cliente extends PublicController{
                     if($result){
                         \Utilities\Site::redirectToWithMsg(
                             "index.php?page=mnt.clientes.clientes",
-                            "Pago guardado satisfactoriamente"
+                            "Cliente guardado satisfactoriamente"
                         );
                     }
                     break;
@@ -114,7 +114,7 @@ class Cliente extends PublicController{
                     if($result){
                         \Utilities\Site::redirectToWithMsg(
                             "index.php?page=mnt.clientes.clientes",
-                            "Pago guardado satisfactoriamente"
+                            "Cliente actualizado satisfactoriamente"
                         );
                     }
                     break;
@@ -128,7 +128,7 @@ class Cliente extends PublicController{
                     if($result){
                         \Utilities\Site::redirectToWithMsg(
                             "index.php?page=mnt.clientes.clientes",
-                            "Pago guardado satisfactoriamente"
+                            "Cliente eliminado satisfactoriamente"
                         );
                     }
                     break;
@@ -147,13 +147,6 @@ class Cliente extends PublicController{
             $tmpCliente = \Dao\Mnt\Clientes::obtenerClientesId(
                 intval($this -> viewData["idCliente"],10)
             );
-
-            // si el estado es actualizar, eliminar o solo mostrar, seteamos la variable en true
-            if($this -> viewData["mode"] == 'UPD' || $this -> viewData["mode"] == 'DEL'
-               || $this -> viewData["mode"] == 'DSP'){
-
-                $this -> viewData["isViewMode"] = true;
-            }
 
             // si es display, dejar los campos no editables
             if($this -> viewData["mode"] == 'DSP' || $this -> viewData["mode"] == 'DEL'){

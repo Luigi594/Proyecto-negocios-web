@@ -1,36 +1,53 @@
 <h1>Clientes</h1>
 <hr>
-<table>
-    <thead>
-        <tr>
-            <td>Nombre</td>
-            <td>Apellido</td>
-            <td>Telefono</td>
-            <td>RTN</td>
-            <td>Fecha de Nacimiento</td>
-            <td>Estado</td>
-            <td><a href="index.php?page=mnt.clientes.cliente&mode=INS&idCliente=0">Nuevo</a></td>
-        </tr>
-    </thead>
-    <tbody>
-        {{foreach clientes}}
+
+<section class="WWList">
+    <table>
+        <thead>
             <tr>
-                <td>
-                    <a href="index.php?page=mnt.clientes.cliente&mode=INS&idCliente={{idCliente}}">{{nombre}}</a>
-                </td>
-                <td>
-                    <a href="index.php?page=mnt.clientes.cliente&mode=INS&idCliente={{idCliente}}">{{apellido}}</a>
-                </td>
-                <td>{{telefono}}</td>
-                <td>{{rtn}}</td>
-                <td>{{fechaNacimiento}}</td>
-                <td>{{estado}}</td>
-                <td>
-                    <a href="index.php?page=mnt.clientes.cliente&mode=UPD&idCliente={{idCliente}}">Editar</a>
-                    &nbsp; 
-                    <a href="index.php?page=mnt.clientes.cliente&mode=DEL&idCliente={{idCliente}}">Eliminar</a>
-                </td>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Telefono</th>
+                <th>RTN</th>
+                <th>Fecha de Nacimiento</th>
+                <th>Estado</th>
+                <th>Acciones</th>
             </tr>
-        {{endfor clientes}}
-    </tbody>
-</table>
+        </thead>
+        <tbody class="bg-white">
+            {{foreach clientes}}
+                <tr>
+                    <td>{{nombre}}</td>
+                    <td>{{apellido}}</td>
+                    <td>{{telefono}}</td>
+                    <td>
+                        <a href="index.php?page=mnt.clientes.cliente&mode=DSP&idCliente={{idCliente}}">{{rtn}}</a>
+                    </td>
+                    <td>{{fechaNacimiento}}</td>
+                    <td>{{estado}}</td>
+                    <td>
+                        <button class="btn primary" id="btnNuevo">Nuevo</button>
+                        &nbsp; &nbsp; 
+                        <a href="index.php?page=mnt.clientes.cliente&mode=UPD&idCliente={{idCliente}}">Editar</a>
+                        &nbsp; &nbsp; 
+                        <a href="index.php?page=mnt.clientes.cliente&mode=DEL&idCliente={{idCliente}}">Eliminar</a>
+                    </td>
+                </tr>
+            {{endfor clientes}}
+        </tbody>
+    </table>
+</section>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', (e) => {
+
+        let btnNuevo = document.getElementById("btnNuevo");
+        btnNuevo.addEventListener('click',(e) => {
+
+            e.preventDefault();
+            e.stopPropagation();
+            window.location.assign("index.php?page=mnt.clientes.cliente&mode=INS&idCliente=0")
+        })
+    });
+</script>
