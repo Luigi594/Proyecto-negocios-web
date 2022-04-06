@@ -17,13 +17,12 @@ class Ingrediente extends PublicController{
         "INA" => "Inactivo"
     );
     private $_proveedoresOptions = array(
-        "1" => "Jetstereo",
+        "1" => "Diprova",
         "2" => "Intur",
-        "3" => "Diprova",
-        "4" => "La Colonia",
-        "5" => "Walmart",
-        "6" => "NutriBoom",
-        "7" => "Despensa Familiar"
+        "3" => "La Colonia",
+        "4" => "Walmart",
+        "5" => "NutriBoom",
+        "6" => "Despensa Familiar"
     );
     private $_viewData = array(
         "mode" => "INS",
@@ -33,7 +32,7 @@ class Ingrediente extends PublicController{
         "nombre" =>"",
         "descripcion" =>"",
         "precio" =>"",
-        "estado" =>"ACT",
+        "estado" =>"",
         "modeDsc" =>"",
         "readonly" => false,
         "isInsert" => false,
@@ -156,7 +155,7 @@ class Ingrediente extends PublicController{
             'value',
             'text',
             'select',
-            $this->_viewData['idProveedores']
+            $this->_viewData['proveedoresOptions']
         );
 
         $this->_viewData["crsxToken"] = md5(time()."ingrediente");

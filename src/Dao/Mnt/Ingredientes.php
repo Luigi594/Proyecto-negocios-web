@@ -24,7 +24,7 @@ class Ingredientes extends Table
     }   
     
     public static function nuevoIngrediente($idProveedor, $nombre, $descripcion, $precio, $estado){
-        $sqlstr = "INSERT INTO ingredientes (idProveedor, nombre, descripcion, precio, estado) 
+        $sqlstr = "INSERT INTO ingredientes(idProveedor, nombre, descripcion, precio, estado) 
                     VALUES (:idProveedor, :nombre, :descripcion, :precio, :estado);";
         return self::executeNonQuery(
             $sqlstr,
