@@ -26,7 +26,7 @@ class Proveedores extends Table
     public static function nuevoProveedor($nombreProveedor, $empresa, $direccion, $telefono,  $correo, $estado){
 
         $sqlstr = "INSERT INTO proveedores(nombreProveedor, empresa, direccion, telefono,  correo, estado)
-        VALUES(:nombreProveedor, :empresa, :direccion, :telefono,  :correo :estado); ";
+        VALUES(:nombreProveedor, :empresa, :direccion, :telefono,  :correo, :estado); ";
 
         return self::executeNonQuery(
             $sqlstr,
@@ -41,7 +41,7 @@ class Proveedores extends Table
         );
     }
 
-    public static function modificarProveedor($nombreProveedor, $empresa, $direccion, $telefono,  $correo, $estado){
+    public static function modificarProveedor($nombreProveedor, $empresa, $direccion, $telefono,  $correo, $estado, $idProveedor){
 
         $sqlstr = "UPDATE proveedores SET nombreProveedor = :nombreProveedor, empresa = :empresa, 
         direccion = :direccion, telefono = :telefono, 
@@ -58,6 +58,7 @@ class Proveedores extends Table
                 "telefono" => $telefono,
                 "correo" => $correo,
                 "estado" => $estado,
+                "idProveedor" => $idProveedor
             )
         );
     }

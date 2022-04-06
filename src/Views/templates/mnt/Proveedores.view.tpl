@@ -18,13 +18,11 @@
         <tbody class="bg-white">
             {{foreach proveedores}}
                 <tr>
-                    <td>{{nombreProveedor}}</td>
+                    <td>{{nombreProveedor}}&nbsp; &nbsp;</td>
                     <td>{{empresa}}</td>
                     <td>{{direccion}}</td>
-                    <td>
-                        <a href="index.php?page=mnt.proveedores.proveedor&mode=DSP&idProveedor={{idProveedor}}">{{rtn}}</a>
-                    </td>
-                    <td>{{fechaNacimiento}}</td>
+                    <td>{{telefono}}</td>
+                    <td>{{correo}}</td>
                     <td>{{estado}}</td>
                     <td>
                         &nbsp; &nbsp; 

@@ -93,7 +93,7 @@ class Proveedor extends PublicController{
 
                     if($result){
                         \Utilities\Site::redirectToWithMsg(
-                            "index.php?page=mnt.proveedores.proveedor",
+                            "index.php?page=mnt.proveedores.proveedores",
                             "Proveedor guardado satisfactoriamente"
                         );
                     }
@@ -107,12 +107,13 @@ class Proveedor extends PublicController{
                         $this -> viewData["direccion"],
                         $this -> viewData["telefono"],
                         $this -> viewData["correo"],
-                        $this -> viewData["estado"]
+                        $this -> viewData["estado"],
+                        $this -> viewData["idProveedor"]
                     );
 
                     if($result){
                         \Utilities\Site::redirectToWithMsg(
-                            "index.php?page=mnt.proveedores.proveedor",
+                            "index.php?page=mnt.proveedores.proveedores",
                             "Proveedor actualizado satisfactoriamente"
                         );
                     }
@@ -126,7 +127,7 @@ class Proveedor extends PublicController{
 
                     if($result){
                         \Utilities\Site::redirectToWithMsg(
-                            "index.php?page=mnt.proveedores.proveedor",
+                            "index.php?page=mnt.proveedores.proveedores",
                             "Proveedor eliminado satisfactoriamente"
                         );
                     }
@@ -157,7 +158,7 @@ class Proveedor extends PublicController{
             $this -> viewData["modeDsc"] = sprintf(
 
                 $this -> modeString[$this -> viewData["mode"]],
-                $this -> viewData["nombre"],
+                $this -> viewData["nombreProveedor"],
                 $this -> viewData["idProveedor"]
             );
         }
