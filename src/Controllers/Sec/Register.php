@@ -3,6 +3,7 @@
 namespace Controllers\Sec;
 
 use Controllers\PublicController;
+use Error;
 use \Utilities\Validators;
 use Exception;
 
