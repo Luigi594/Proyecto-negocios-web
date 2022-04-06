@@ -43,7 +43,7 @@ class Empleados extends Table
 
     public static function modificarEmpleado($nombre, $apellido, $puestoId, $telefono,  $fechaNacimiento, $estado, $idEmpleado){
 
-        $sqlstr = "UPDATE empleados SET puestoId = :puestoId, nombre = :nombre, apellido = :apellido, telefono = :telefono, rtn = :rtn, fechaNacimiento = :fechaNacimiento,estado = :estado
+        $sqlstr = "UPDATE empleados SET puestoId = :puestoId, nombre = :nombre, apellido = :apellido, telefono = :telefono, fechaNacimiento = :fechaNacimiento, estado = :estado
         WHERE idEmpleado = :idEmpleado; ";
 
         return self::executeNonQuery(
