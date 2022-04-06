@@ -5,7 +5,7 @@ namespace Controllers\Mnt\Carritos;
 use Controllers\PublicController;
 use Views\Renderer;
 
-class Carrito extends PublicController
+class Carritos extends PublicController
 {
     private $_modeStrings = array(
         "INS" => "Nuevo Carrito",
@@ -66,7 +66,7 @@ class Carrito extends PublicController
             switch ($this->_viewData["mode"]) {
             case 'INS':
                 # code...
-                $result = \Dao\Mnt\Carritos\Carritos::nuevoCarrito(
+                $result = \Dao\Mnt\Carritos::nuevoCarrito(
                     $this->_viewData["clienteId"],
                     $this->_viewData["productoId"],
                     $this->_viewData["cantidad"],
@@ -82,7 +82,7 @@ class Carrito extends PublicController
                 }
                 break;
             case 'UPD':
-                $result = \Dao\Mnt\Carritos\Carritos::actualizarCarrito(
+                $result = \Dao\Mnt\Carritos::actualizarCarrito(
                     $this->_viewData["clienteId"],
                     $this->_viewData["productoId"],
                     $this->_viewData["cantidad"],
@@ -98,7 +98,7 @@ class Carrito extends PublicController
                 }
                 break;
             case 'DEL':
-                $result = \Dao\Mnt\Carritos\Carritos::eliminarCarrito(
+                $result = \Dao\Mnt\Carritos::eliminarCarrito(
                     $this->_viewData["id"]
                 );
                 if ($result) {
@@ -121,7 +121,7 @@ class Carrito extends PublicController
              $this->_viewData["modeDsc"]
                  = $this->_modeStrings[$this->_viewData["mode"]];
         } else {
-            $tmpCarrito =\Dao\Mnt\Carritos\Carritos::obtenerPorId(
+            $tmpCarrito =\Dao\Mnt\Carritos::obtenerPorId(
                 intval($this->_viewData["id"], 10)
             );
             \Utilities\ArrUtils::mergeFullArrayTo($tmpCarrito, $this->_viewData);

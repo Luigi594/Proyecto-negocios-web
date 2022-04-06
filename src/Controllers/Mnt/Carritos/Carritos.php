@@ -14,14 +14,14 @@ use Views\Renderer;
   `fechahora` datetime NOT NULL,
   PRIMARY KEY (`id`)
 */
-class Categorias extends PublicController
+class Carritos extends PublicController
 {
     public function run(): void
     {
         $viewData = array();
-        $viewData["carrito"]
-            = \Dao\Mnt\Carritos\Carritos::obtenerTodos();
-        Renderer::render('mnt/Carritos', $viewData);
+        $viewData["carritos"]
+            = \Dao\Mnt\Carritos::obtenerTodos();
+        Renderer::render('mnt/carritos', $viewData);
     }
 }
 
