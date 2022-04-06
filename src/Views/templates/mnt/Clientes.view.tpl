@@ -11,7 +11,6 @@
                 <th>RTN</th>
                 <th>Fecha de Nacimiento</th>
                 <th>Estado</th>
-                <th>Acciones</th>
                 <th><button class="btn primary" id="btnNuevo">Nuevo</button></th>
             </tr>
         </thead>

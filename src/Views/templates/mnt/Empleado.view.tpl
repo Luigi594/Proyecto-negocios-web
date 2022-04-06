@@ -65,7 +65,7 @@
         btnCancelar.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            window.location.assign("index.php?page=mnt.empleados.empleadoss");
+            window.location.assign("index.php?page=mnt.empleados.empleados");
         })
     });
 </script>
