@@ -27,7 +27,7 @@ class VentasDetalles extends PublicController
     {
         $viewData = array();
         $viewData["ventas_detalles"] 
-                        = \Dao\Mnt\VentasDetalles::obtenerPorId();
+                        = \Dao\Mnt\VentasDetalles::obtenerTodos();
         Renderer::render('mnt/ventas_detalles', $viewData);
     }
 }

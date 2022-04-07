@@ -18,7 +18,7 @@
     <tr>
       <td>{{id}}</td>
       <td>{{clienteId}}</td>
-      <td>{{productoId}}</td>
+      <td>{{nombre}}</td>
       <td>{{cantidad}}</td>
       <td>{{precio}}</td>
       <td>{{fechahora}}</td>
@@ -30,19 +30,6 @@
   </tbody>
   </table>
   <form class="d-flex flex-column align-items-end" action="index.php?page=checkout_checkout" method="post">
-        <div class="form-group col-md-2">
-            <label for="CarritoSubtotal" class="font-weight-bold">Subtotal: </label>
-            <input type="text" readonly class="form-control" id="CarritoSubtotal" value="{{Subtotal}}">
-        </div>
-        <div class="form-group col-md-2">
-            <label for="CarritoISV" class="font-weight-bold">ISV: </label>
-            <input type="text" readonly class="form-control" id="CarritoISV" value="{{Subtotal}}">
-        </div>
-        <div class="form-group col-md-2">
-            <label for="CarritoTotal" class="font-weight-bold">Total: </label>
-            <input type="text" readonly class="form-control" id="CarritoTotal" value="{{Total}}">
-        </div>
-
         <fieldset class="row flex-center">
             <button type="submit" name="btnProcesar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
             <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>

@@ -7,7 +7,8 @@ class VentasDetalles extends Table
 {
     public static function obtenerTodos()
     {
-       $sqlstr = "select * from ventas_detalle; ";
+       $sqlstr = "select * from ventas_detalle v
+       join productos p on v.idProducto = p.idProducto;";
        return self::obtenerRegistros(
             $sqlstr,
             array()
