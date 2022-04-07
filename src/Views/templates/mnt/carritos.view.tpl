@@ -45,7 +45,7 @@
     </form>
 
    <fieldset class="row flex-center">
-            <button type="submit" name="btnConfirmar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" name="btnProcesar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
             <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
    </fieldset>        
 </section>
