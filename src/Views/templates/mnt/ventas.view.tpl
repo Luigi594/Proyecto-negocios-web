@@ -1,16 +1,18 @@
-<h1>Historico de Ventas</h1>
+<h1>Historico de Ventas de X Usuario</h1>
 <hr>
-<table>
+<section class="WWList">
+  <table>
   <thead>
     <tr>
-      <td>Código</td>
-      <td>Cliente</td>
-      <td>Fecha</td>
-      <td>Tipo Pago</td>
-      <td>Estado Venta</td>
-      <td>Fecha Entrega</td>
-      <td>Estado Entrega</td>
-      <td>docsMeta</td>
+      <th>Código</th>
+      <th>Cliente</td>
+      <th>Fecha</th>
+      <th>Tipo Pago</th>
+      <th>Estado Venta</th>
+      <th>Fecha Entrega</th>
+      <th>Estado Entrega</th>
+      <th>docsMeta</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
@@ -24,7 +26,12 @@
       <td>{{fechaEntrega}}</td>
       <td>{{estadoEntrega}}</td>
       <td>{{docsMeta}}</td>
+      <td>
+        <a href="">Ver Detalle</a>
+      </td>
     </tr>
     {{endfor ventas}}
   </tbody>
-</table>
+  </table>
+</section>
+

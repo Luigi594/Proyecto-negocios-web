@@ -1,34 +1,38 @@
 <h1>Detalle de Venta</h1>
 <hr>
-<table>
+<section class="WWList">
+    <table>
   <thead>
     <tr>
-      <td>Código</td>
-      <td>Venta Id</td>
-      <td>Producto Id</td>
-      <td>Cantidad</td>
-      <td>precio</td>
-      <td>IVA</td>
-      <td>Observacion</td>
-      <td>Descuento</td>
-      <td>Acciones</td>
+      <th>Código</th>
+      <th>Venta Id</th>
+      <th>Producto Id</th>
+      <th>Cantidad</th>
+      <th>precio</th>
+      <th>IVA</th>
+      <th>Observacion</th>
+      <th>Descuento</th>
+      <th>Acciones</th>
     </tr>
   </thead>
   <tbody>
     {{foreach ventas_detalles}}
-    <tr>
-      <td>{{idDetalle}}</td>
-      <td>{{idVenta}}</td>
-      <td>{{idProducto}}</td>
-      <td>{{cantidad}}</td>
-      <td>{{precio}}</td>
-      <td>{{IVA}}</td>
-      <td>{{observacion}}</td>
-      <td>{{descuento}}</td>
-       <td>
-        <a href="">Eliminar</a>
-      </td>
-    </tr>
+        <tr>
+        <td>{{idDetalle}}</td>
+        <td>{{idVenta}}</td>
+        <td>{{idProducto}}</td>
+        <td>{{cantidad}}</td>
+        <td>{{precio}}</td>
+        <td>{{IVA}}</td>
+        <td>{{observacion}}</td>
+        <td>{{descuento}}</td>
+        <td>
+            <a href="">Eliminar Item</a>
+        </td>
+        </tr>
     {{endfor ventas_detalles}}
   </tbody>
-</table>
+  </table>
+</section>
+
+

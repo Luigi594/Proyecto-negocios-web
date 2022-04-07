@@ -8,6 +8,7 @@ use Views\Renderer;
 class VentasDetalles extends PublicController{
     private $_modeStrings = array(
         "INS" => "Nuevo Detalle",
+        "DSP" => "Detalle de %s (%s)",
     );
     private $_viewData = array(
         "mode" => "INS",
