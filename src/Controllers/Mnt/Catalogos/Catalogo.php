@@ -59,7 +59,7 @@ class Catalogo extends PublicController{
             unset($_SESSION["producto_crsxToken"]);
             if($this->_viewData["mode"]){ 
             
-                $result = \Dao\Mnt\Carritos\Carritos::nuevoCarrito(
+                $result = \Dao\Mnt\Carritos::nuevoCarrito(
                     $this->_viewData["clienteId"],
                     $this->_viewData["idProducto"],
                     $this->_viewData["cantidad"],

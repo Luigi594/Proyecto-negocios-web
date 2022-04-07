@@ -1,6 +1,6 @@
 <?php
 
-namespace Dao\Mnt\Carritos;
+namespace Dao\Mnt;
 
 use Dao\Table;
 

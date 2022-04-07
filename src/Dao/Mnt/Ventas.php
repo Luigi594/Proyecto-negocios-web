@@ -1,6 +1,6 @@
 <?php
 
-namespace Dao\Mnt\Ventas;
+namespace Dao\Mnt;
 
 use Dao\Table;
 

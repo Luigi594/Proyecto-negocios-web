@@ -24,7 +24,7 @@ class Ventas extends PublicController
     private $_viewData = array(
         "mode"=>"INS",
         "idVenta"=>0,
-        "clienteId"=>"",
+        "clienteId"=>0,
         "fechaVenta"=>"",
         "tipoPago"=>"",
         "estadoVenta"=>NULL,
@@ -92,7 +92,7 @@ class Ventas extends PublicController
             switch ($this->_viewData["mode"]) {
             case 'INS':
                 # code...
-                $result = \Dao\Mnt\Ventas\Ventas::nuevaVenta(
+                $result = \Dao\Mnt\Ventas::nuevaVenta(
                     $this->_viewData["clienteId"],
                     $this->_viewData["fechaVenta"],
                     $this->_viewData["tipoPago"],
@@ -121,7 +121,7 @@ class Ventas extends PublicController
              $this->_viewData["modeDsc"]
                  = $this->_modeStrings[$this->_viewData["mode"]];
         } else {
-            $tmpVentas =\Dao\Mnt\Ventas\Ventas::obtenerPorId(
+            $tmpVentas =\Dao\Mnt\Ventas::obtenerPorId(
                 intval($this->_viewData["clienteId"], 10)
             );
             \Utilities\ArrUtils::mergeFullArrayTo($tmpVentas, $this->_viewData);
