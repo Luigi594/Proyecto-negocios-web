@@ -7,13 +7,14 @@ use Controllers\PublicController;
 class Checkout extends PublicController{
     public function run():void
     {
-        $clienteId=0;
-        $productoId=0;
-        $cantidad=0;
-        $precio=0;
-        $fechahora="";
+        $id = 0;
+        $producto="";
+        $descripcion = "";
+        $idProducto = "";
+        $precio = 0;
+        $cantidad = 0;
         $viewData = array();
-        $tmp=\Dao\Mnt\Carritos::obtenerTodos(); 
+        $tmp=\Dao\Mnt\Carritos::obtenerCarrito(); 
 
         if (isset($_POST["btnProcesar"])) {
             $PayPalOrder = new \Utilities\Paypal\PayPalOrder(
@@ -23,17 +24,20 @@ class Checkout extends PublicController{
             );
 
             foreach($tmp as $item){
-                $clienteId=$item["clienteId"];
-                $productoId=$item["productoId"];
-                $cantidad=$item["cantidad"];
-                $precio=$item["precio"];
-                $fechahora=$item["fechahora"];
-                $PayPalOrder->addItem($clienteId, $productoId, $cantidad, $precio, 15,$fechahora,"DIGITAL_GOODS");
+               
+                $producto = $item["nombre"];
+                $descripcion = $item["descripcion"];
+                $idProducto = $item["idPrducto"];
+                $precio = $item["precio"];
+                $cantidad = $item["cantidad"];
+                $PayPalOrder->addItem($producto, $descripcion, $idProducto, 15, $precio, $cantidad, "DIGITAL_GOODS");
             }
  
             $response = $PayPalOrder->createOrder();
             $_SESSION["orderid"] = $response[1]->result->id;
             \Utilities\Site::redirectTo($response[0]->href);
+            
+            \Dao\Mnt\Ventas::nuevaVenta(2, "Tarjeta", "VND", "2022-05-20 00:00:00", "PND", "Orden procesada");
             die();
         }
 

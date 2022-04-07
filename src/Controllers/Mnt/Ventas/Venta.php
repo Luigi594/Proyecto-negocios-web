@@ -5,7 +5,7 @@ namespace Controllers\Mnt\Ventas;
 use Controllers\PublicController;
 use Views\Renderer;
 
-class Ventas extends PublicController
+class Venta extends PublicController
 {
     private $_modeStrings = array(
         "INS" => "Nueva Venta",
@@ -62,8 +62,6 @@ class Ventas extends PublicController
     private function handlePost()
     {
         \Utilities\ArrUtils::mergeFullArrayTo($_POST, $this->_viewData);
-        print_r($_SESSION);
-        print_r($this->_viewData);
         die();
         if (!(isset($_SESSION["ventas_crsxToken"])
             && $_SESSION["ventas_crsxToken"] == $this->_viewData["crsxToken"] )

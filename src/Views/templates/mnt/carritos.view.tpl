@@ -29,7 +29,7 @@
     {{endfor carritos}}
   </tbody>
   </table>
-  <form class="d-flex flex-column align-items-end">
+  <form class="d-flex flex-column align-items-end" action="index.php?page=checkout_checkout" method="post">
         <div class="form-group col-md-2">
             <label for="CarritoSubtotal" class="font-weight-bold">Subtotal: </label>
             <input type="text" readonly class="form-control" id="CarritoSubtotal" value="{{Subtotal}}">
@@ -42,12 +42,12 @@
             <label for="CarritoTotal" class="font-weight-bold">Total: </label>
             <input type="text" readonly class="form-control" id="CarritoTotal" value="{{Total}}">
         </div>
-    </form>
 
-   <fieldset class="row flex-center">
+        <fieldset class="row flex-center">
             <button type="submit" name="btnProcesar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
             <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
-   </fieldset>        
+        </fieldset>
+    </form>           
 </section>
 
 <script>

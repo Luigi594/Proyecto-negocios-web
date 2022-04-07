@@ -67,7 +67,7 @@ class Catalogo extends PublicController{
                 );
                 if($result){
                     \Utilities\Site::redirectToWithMsg(
-                        "index.php?page=mnt.catalogos.catalogos",
+                        "index.php?page=mnt.carritos.carritos",
                         "Agregando al Carrito"
                     );
                 }

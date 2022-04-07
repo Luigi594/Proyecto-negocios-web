@@ -26,9 +26,6 @@
         <td>{{IVA}}</td>
         <td>{{observacion}}</td>
         <td>{{descuento}}</td>
-        <td>
-            <a href="">Eliminar Item</a>
-        </td>
         </tr>
     {{endfor ventas_detalles}}
   </tbody>

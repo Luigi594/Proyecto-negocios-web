@@ -5,13 +5,12 @@ namespace Controllers\Mnt\VentasDetalles;
 use Controllers\PublicController;
 use Views\Renderer;
 
-class VentasDetalles extends PublicController{
+class VentasDetalle extends PublicController{
     private $_modeStrings = array(
-        "INS" => "Nuevo Detalle",
-        "DSP" => "Detalle de %s (%s)",
+        "DSP" => "Detalle",
     );
     private $_viewData = array(
-        "mode" => "INS",
+        "mode" => "DSP", 
         "idDetalle" => 0,
         "idVenta" =>0,
         "idProducto" =>0,
@@ -43,59 +42,14 @@ class VentasDetalles extends PublicController{
         }
     }
 
-    private function handlePost()
-    {
-        \Utilities\ArrUtils::mergeFullArrayTo($_POST, $this->_viewData);
-        if(!isset($_SESSION["ventas_detalles_crsxToken"]) 
-        || $_SESSION["ventas_detalles_crsxToken"]!== $this->_viewData["crsxToken"])
-        {
-            unset($_SESSION["ventas_detalles_crsxToken"]);
-            \Utilities\Site::redirectToWithMsg(
-                'index.php?page=mnt.ventas_detalles.ventas_detalles', 
-                'Ocurrio un error, no se puede procesar el formulario'
-            );
-        }
-        
-        unset($_SESSION["ventas_detalles_crsxToken"]);
-        switch ($this->_viewData["mode"]){
-        case 'INS':
-            $result = \Dao\Mnt\VentasDetalles::nuevoDetalle(
-                $this->_viewData["idVenta"],
-                $this->_viewData["idProducto"],
-                $this->_viewData["cantidad"],
-                $this->_viewData["precio"],
-                $this->_viewData["IVA"],
-                $this->_viewData["observacion"],
-                $this->_viewData["descuento"]
-            );
-            if($result){
-                \Utilities\Site::redirectToWithMsg(
-                    'index.php?page=mnt.ventas_detalles.ventas_detalles',
-                    "Detalle guardado correctamente"
-                );
-            }
-        break; 
-
-        default :
-
-        break;
-        }
-             
-    }
-
     private function prepareViewData(){
-        if($this->_viewData["mode"] == "INS"){
-            $this->_viewData["modeDsc"] = 
-                $this->_modeStrings[$this->_viewData["mode"]];
-        }else{
-            $tmpProducto = \Dao\Mnt\VentasDetalles::obtenerPorId(intval($this->_viewData["idVenta"], 10));
-            \Utilities\ArrUtils::mergeFullArrayTo($tmpProducto, $this->_viewData);
-            $this->_viewData["modeDsc"] = sprintf(
-                $this->_modeStrings[$this->_viewData["mode"]],
-                $this->_viewData["idDetalle"],
-                $this->_viewData["idVenta"]
-            );
-        }
+        
+        $tmpProducto = \Dao\Mnt\VentasDetalles::obtenerPorId(intval($this->_viewData["idVenta"], 10));
+        \Utilities\ArrUtils::mergeFullArrayTo($tmpProducto, $this->_viewData);
+        $this->_viewData["modeDsc"] = sprintf(
+            $this->_modeStrings[$this->_viewData["mode"]]                
+        );
+        
         
         $this->_viewData["crsxToken"] = md5(time()."ventas_detalles");
         $_SESSION["ventas_detalles_crsxToken"] = $this->_viewData["crsxToken"];
@@ -104,9 +58,6 @@ class VentasDetalles extends PublicController{
     public function run(): void{
         
         $this->init();
-        if($this->isPostBack()){
-            $this->handlePost();
-        }
         $this-> prepareViewData();
         Renderer::render('mnt/ventas_detalles', $this->_viewData);
     }

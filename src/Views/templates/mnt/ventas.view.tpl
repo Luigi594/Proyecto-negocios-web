@@ -19,7 +19,7 @@
     {{foreach ventas}}
     <tr>
       <td>{{idVenta}}</td>
-      <td>{{clienteId}}</td>
+      <td>{{nombre}} {{apellido}}</td>
       <td>{{fechaVenta}}</td>
       <td>{{tipoPago}}</td>
       <td>{{estadoVenta}}</td>
@@ -27,7 +27,7 @@
       <td>{{estadoEntrega}}</td>
       <td>{{docsMeta}}</td>
       <td>
-        <a href="">Ver Detalle</a>
+        <a href="index.php?page=mnt.ventasdetalles.ventasdetalle&mode=DSP&idVenta={{idVenta}}">Ver Detalle</a>
       </td>
     </tr>
     {{endfor ventas}}

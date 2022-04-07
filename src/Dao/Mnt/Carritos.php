@@ -24,6 +24,15 @@ class Carritos extends Table
         );
     }
 
+    public static function obtenerCarrito(){
+
+        $sqlstr = "SELECT c.id, p.nombre, p.descripcion, p.idProducto, p.precio, c.cantidad 
+        from carrito c join productos p on c.productoId = p.idProducto
+        join clientes cl on c.clienteId = cl.idCliente; ";
+
+        return self::obtenerRegistros($sqlstr, array());
+    }
+
     public static function nuevoCarrito($clienteId, $productoId, $cantidad, $precio)
     {
         $sqlstr= "INSERT INTO carrito (clienteId, productoId, cantidad, precio, fechahora) values (:clienteId, :productoId, :cantidad, :precio, now());";
@@ -52,13 +61,13 @@ class Carritos extends Table
         );
     }
     
-    public static function eliminarCarrito($clienteId)
+    public static function eliminarCarrito($id)
     {
-        $sqlstr = "DELETE FROM carrito where clienteId=:clienteId;";
+        $sqlstr = "DELETE FROM carrito where id=:id;";
         return self::executeNonQuery(
             $sqlstr,
             array(
-                "clienteId"=>$clienteId
+                "id"=>$id
             )
         );
     }
