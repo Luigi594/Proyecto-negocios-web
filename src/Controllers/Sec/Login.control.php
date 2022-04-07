@@ -25,41 +25,40 @@ class Login extends \Controllers\PublicController
             }
             if (! $this->hasError) {
                 if ($dbUser = \Dao\Security\Security::getUsuarioByEmail($this->txtEmail)) {
-                    if ($dbUser["userest"] != \Dao\Security\Estados::ACTIVO) {
+                    if ($dbUser["UsuarioEst"] != \Dao\Security\Estados::ACTIVO) {
                         $this->generalError = "¡Credenciales son incorrectas!";
                         $this->hasError = true;
-                        error_log(
-                            sprintf(
-                                "ERROR: %d %s tiene cuenta con estado %s",
-                                $dbUser["usercod"],
-                                $dbUser["useremail"],
-                                $dbUser["userest"]
-                            )
+                        \Dao\Security\Bitacora::insert(
+                            "globalshophn", 
+                            "ERROR: ". $dbUser["UsuarioId"] ." ". $dbUser["UsuarioEmail"]." tiene cuenta con estado ".$dbUser["UsuarioEst"],
+                            "ACT",
+                            $dbUser["UsuarioId"]
                         );
                     }
-                    if (!\Dao\Security\Security::verifyPassword($this->txtPswd, $dbUser["userpswd"])) {
+                    if (!\Dao\Security\Security::verifyPassword($this->txtPswd, $dbUser["UsuarioPswd"])) {
                         $this->generalError = "¡Credenciales son incorrectas!";
                         $this->hasError = true;
-                        error_log(
-                            sprintf(
-                                "ERROR: %d %s contraseña incorrecta",
-                                $dbUser["usercod"],
-                                $dbUser["useremail"]
-                            )
+                        \Dao\Security\Bitacora::insert(
+                            "globalshophn",
+                            "ERROR: ". $dbUser["UsuarioId"] ." ". $dbUser["UsuarioEmail"]." contraseña incorrecta",
+                            "ACT",
+                            $dbUser["UsuarioId"]
                         );
+                        
                         // Aqui se debe establecer acciones segun la politica de la institucion.
                     }
                     if (! $this->hasError) {
                         \Utilities\Security::login(
-                            $dbUser["usercod"],
-                            $dbUser["username"],
-                            $dbUser["useremail"]
+                            $dbUser["UsuarioId"],
+                            $dbUser["UsuarioNombre"],
+                            $dbUser["UsuarioEmail"]
                         );
                         if (\Utilities\Context::getContextByKey("redirto") !== "") {
                             \Utilities\Site::redirectTo(
                                 \Utilities\Context::getContextByKey("redirto")
                             );
                         } else {
+                           
                             \Utilities\Site::redirectTo("index.php");
                         }
                     }
@@ -70,6 +69,12 @@ class Login extends \Controllers\PublicController
                             $this->txtEmail
                         )
                     );
+                    \Dao\Security\Bitacora::insert(
+                        "globalshophn",
+                        "ERROR: ".$this->txtEmail." trato de ingresar",
+                        "ACT",
+                        $dbUser["UsuarioId"]
+                    );
                     $this->generalError = "¡Credenciales son incorrectas!";
                 }
             }
@@ -77,5 +82,7 @@ class Login extends \Controllers\PublicController
         $dataView = get_object_vars($this);
         \Views\Renderer::render("security/login", $dataView);
     }
+
+
 }
 ?>
