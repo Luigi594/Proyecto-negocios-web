@@ -4,11 +4,12 @@
   <thead>
     <tr>
       <td>Código</td>
-      <td>Código Cliente</td>
-      <td>Codigo Producto</td>
+      <td>Cliente Id</td>
+      <td>Producto Id</td>
       <td>Cantidad</td>
       <td>Precio</td>
       <td>Fecha/Hora</td>
+      <td>Acciones</td>
     </tr>
   </thead>
   <tbody>
