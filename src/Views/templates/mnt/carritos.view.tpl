@@ -18,7 +18,7 @@
     <tr>
       <td>{{id}}</td>
       <td>{{clienteId}}</td>
-      <td>{{productoId}}</td>
+      <td>{{nombre}}</td>
       <td>{{cantidad}}</td>
       <td>{{precio}}</td>
       <td>{{fechahora}}</td>

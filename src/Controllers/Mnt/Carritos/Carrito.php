@@ -77,22 +77,6 @@ class Carrito extends PublicController
                     );
                 }
                 break;
-            case 'UPD':
-                $result = \Dao\Mnt\Carritos::actualizarCarrito(
-                    $this->_viewData["clienteId"],
-                    $this->_viewData["productoId"],
-                    $this->_viewData["cantidad"],
-                    $this->_viewData["precio"],
-                    $this->_viewData["fechahora"]
-                );
-                if ($result) {
-                    $_SESSION["carrito_crsxToken"] = "";
-                    \Utilities\Site::redirectToWithMsg(
-                        'index.php?page=mnt.carritos.carritos',
-                        "¡Carrito actualizado satisfactoriamente!"
-                    );
-                }
-                break;
             case 'DEL':
                 $result = \Dao\Mnt\Carritos::eliminarItemCarrito(
                     $this->_viewData["id"]
@@ -100,7 +84,7 @@ class Carrito extends PublicController
                 if ($result) {
                     $_SESSION["carrito_crsxToken"] = "";
                     \Utilities\Site::redirectToWithMsg(
-                        'index.php?page=mnt.carritos.carritos',
+                        'index.php?page=mnt.catalogos.catalogos',
                         "¡Item eliminado satisfactoriamente!"
                     );
                 }
@@ -113,22 +97,16 @@ class Carrito extends PublicController
     }
     private function prepareViewData()
     {
-        if($this -> _viewData["mode"] == 'DEL'){
-            
-            $this -> _viewData["modeDsc"] = $this -> _modeStrings[$this -> _viewData["mode"]];
-        }
-        else{
-            $tmpCarrito =\Dao\Mnt\Carritos::obtenerPorId(
-                intval($this->_viewData["id"], 10)
-            );
-            \Utilities\ArrUtils::mergeFullArrayTo($tmpCarrito, $this->_viewData);
-            $this -> _viewData["modeDsc"] = sprintf(
-                $this -> _modeStrings[$this -> _viewData["mode"]],
-            );
-    
-            $this->_viewData["crsxToken"] = md5(time()."carrito");
-            $_SESSION["carrito_crsxToken"] = $this->_viewData["crsxToken"];
-        }
+        $tmpCarrito =\Dao\Mnt\Carritos::obtenerPorId(
+            intval($this->_viewData["id"], 10)
+        );
+        \Utilities\ArrUtils::mergeFullArrayTo($tmpCarrito, $this->_viewData);
+        $this -> _viewData["modeDsc"] = sprintf(
+            $this -> _modeStrings[$this -> _viewData["mode"]],
+        );
+
+        $this->_viewData["crsxToken"] = md5(time()."carrito");
+        $_SESSION["carrito_crsxToken"] = $this->_viewData["crsxToken"];
         
     }
 

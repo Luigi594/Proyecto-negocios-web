@@ -8,7 +8,8 @@ class Carritos extends Table
 {
     public static function obtenerTodos()
     {
-        $sqlstr = "select * from carrito;";
+        $sqlstr = "select * from carrito ca
+        join productos p on ca.productoId = p.idProducto;";
         return self::obtenerRegistros(
             $sqlstr,
             array()
@@ -47,28 +48,12 @@ class Carritos extends Table
         );
     }
 
-    public static function actualizarCarrito($clienteId, $productoId, $cantidad, $precio, $fechahora)
+    public static function eliminarCarrito()
     {
-        $sqlstr = "UPDATE carrito set productoId=:productoId, cantidad=:cantidad, precio=:precio, fechahora=:fechahora where clienteId=:clienteId";
+        $sqlstr = "DELETE FROM carrito";
         return self::executeNonQuery(
             $sqlstr,
-            array(
-                "productoId"=>$productoId,
-                "cantidad"=>$cantidad,
-                "precio"=> $precio,
-                "fechahora"=> $fechahora,
-            )
-        );
-    }
-    
-    public static function eliminarCarrito($id)
-    {
-        $sqlstr = "DELETE FROM carrito where id=:id;";
-        return self::executeNonQuery(
-            $sqlstr,
-            array(
-                "id"=>$id
-            )
+            array()
         );
     }
 

@@ -30,14 +30,14 @@ class VentasDetalle extends PublicController{
             $this->_viewData["mode"] = $_GET["mode"];
         }
         if(isset($_GET["idDetalle"])){
-            $this->_viewData["idDetalle"] = $_GET["idDetalle"];
+            $this->_viewData["idVenta"] = $_GET["idVenta"];
         }
         if(!isset($this->_modeStrings[$this->_viewData["mode"]])){
             error_log($this->toString()." Modo no valido".$this->_viewData["mode"],0);
             \Utilities\Site::redirectToWithMsg('index.php?page=mnt.ventas_detalles.ventas_detalles', 
             'Sucedio un error al cargar la pagina.'); 
         }
-        if($this->_viewData["mode"]!=="INS" && intval($this->_viewData["idDetalle"], 10)!==0){
+        if($this->_viewData["mode"]!=="INS" && intval($this->_viewData["idVenta"], 10)!==0){
             $this->_viewData["mode"]!=="DSP";
         }
     }

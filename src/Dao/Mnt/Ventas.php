@@ -25,13 +25,14 @@ class Ventas extends Table
         );
     }
 
-    public static function nuevaVenta($clienteId, $tipoPago, $estadoVenta, $fechaEntrega, $estadoEntrega, $docsMeta)
+    public static function nuevaVenta($clienteId, $fechaVenta ,$tipoPago, $estadoVenta, $fechaEntrega, $estadoEntrega, $docsMeta)
     {
-        $sqlstr= "INSERT INTO ventas (clienteId, now(), tipoPago, estadoVenta, fechaEntrega, estadoEntrega, docsMeta) values (:clienteId, :tipoPago, :estadoVenta, :fechaEntrega, :estadoEntrega, :docsMeta);";
+        $sqlstr= "INSERT INTO ventas (clienteId, fechaVenta, tipoPago, estadoVenta, fechaEntrega, estadoEntrega, docsMeta) values (:clienteId, :fechaVenta,:tipoPago, :estadoVenta, :fechaEntrega, :estadoEntrega, :docsMeta);";
         return self::executeNonQuery(
             $sqlstr,
             array(
                 "clienteId"=>$clienteId,
+                "fechaVenta"=>$fechaVenta,
                 "tipoPago"=>$tipoPago,
                 "estadoVenta"=>$estadoVenta,
                 "fechaEntrega"=>$fechaEntrega,

@@ -27,7 +27,7 @@
       <td>{{estadoEntrega}}</td>
       <td>{{docsMeta}}</td>
       <td>
-        <a href="index.php?page=mnt.ventasdetalles.ventasdetalle&mode=DSP&idVenta={{idVenta}}">Ver Detalle</a>
+        <a href="index.php?page=mnt.ventasdetalles.ventasdetalles&mode=DSP&idVenta={{idVenta}}">Ver Detalle</a>
       </td>
     </tr>
     {{endfor ventas}}
