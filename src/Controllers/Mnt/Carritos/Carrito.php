@@ -5,23 +5,22 @@ namespace Controllers\Mnt\Carritos;
 use Controllers\PublicController;
 use Views\Renderer;
 
-class Carritos extends PublicController
+class Carrito extends PublicController
 {
     private $_modeStrings = array(
-        "INS" => "Nuevo Carrito",
-        "UPD" => "Editar %s (%s)",
-        "DSP" => "Detalle de %s (%s)",
-        "DEL" => "Eliminando %s (%s)"
+        "DSP" => "Detalle",
+        "DEL" => "Eliminar"
     );
     private $_viewData = array(
-        "mode"=>"INS",
+        "mode"=>"DSP",
         "id"=>0,
-        "clienteId"=>"",
-        "productoId"=>"",
+        "clienteId"=>0,
+        "productoId"=>0,
         "cantidad"=>"",
         "precio"=>"",
         "fechahora"=>"",
-        "readonly"=>false,
+        "isRead" => true,
+        "readonly" => "readonly",
         "isInsert"=>false,
         "crsxToken"=>""
     );
@@ -49,9 +48,6 @@ class Carritos extends PublicController
     private function handlePost()
     {
         \Utilities\ArrUtils::mergeFullArrayTo($_POST, $this->_viewData);
-        print_r($_SESSION);
-        print_r($this->_viewData);
-        die();
         if (!(isset($_SESSION["carrito_crsxToken"])
             && $_SESSION["carrito_crsxToken"] == $this->_viewData["crsxToken"] )
         ) {
@@ -62,7 +58,7 @@ class Carritos extends PublicController
             );
         }
 
-            unset($_SESSION["categoria_crsxToken"]);
+            unset($_SESSION["carrito_crsxToken"]);
             switch ($this->_viewData["mode"]) {
             case 'INS':
                 # code...
@@ -98,14 +94,14 @@ class Carritos extends PublicController
                 }
                 break;
             case 'DEL':
-                $result = \Dao\Mnt\Carritos::eliminarCarrito(
+                $result = \Dao\Mnt\Carritos::eliminarItemCarrito(
                     $this->_viewData["id"]
                 );
                 if ($result) {
                     $_SESSION["carrito_crsxToken"] = "";
                     \Utilities\Site::redirectToWithMsg(
                         'index.php?page=mnt.carritos.carritos',
-                        "¡Carrito eliminado satisfactoriamente!"
+                        "¡Item eliminado satisfactoriamente!"
                     );
                 }
                 break;
@@ -117,25 +113,25 @@ class Carritos extends PublicController
     }
     private function prepareViewData()
     {
-        if ($this->_viewData["mode"] == "INS") {
-             $this->_viewData["modeDsc"]
-                 = $this->_modeStrings[$this->_viewData["mode"]];
-        } else {
+        if($this -> _viewData["mode"] == 'DEL'){
+            
+            $this -> _viewData["modeDsc"] = $this -> _modeStrings[$this -> _viewData["mode"]];
+        }
+        else{
             $tmpCarrito =\Dao\Mnt\Carritos::obtenerPorId(
                 intval($this->_viewData["id"], 10)
             );
             \Utilities\ArrUtils::mergeFullArrayTo($tmpCarrito, $this->_viewData);
-            $this->_viewData["modeDsc"] = sprintf(
-                $this->_modeStrings[$this->_viewData["mode"]],
-                $this->_viewData["clienteId"],
-                $this->_viewData["productoId"],
-                $this->_viewData["id"]
+            $this -> _viewData["modeDsc"] = sprintf(
+                $this -> _modeStrings[$this -> _viewData["mode"]],
             );
+    
+            $this->_viewData["crsxToken"] = md5(time()."carrito");
+            $_SESSION["carrito_crsxToken"] = $this->_viewData["crsxToken"];
         }
-
-        $this->_viewData["crsxToken"] = md5(time()."carrito");
-        $_SESSION["carrito_crsxToken"] = $this->_viewData["crsxToken"];
+        
     }
+
     public function run(): void
     {
         $this->init();
@@ -143,6 +139,6 @@ class Carritos extends PublicController
             $this->handlePost();
         }
         $this->prepareViewData();
-        Renderer::render('mnt/carritos', $this->_viewData);
+        Renderer::render('mnt/carrito', $this->_viewData);
     }
 }

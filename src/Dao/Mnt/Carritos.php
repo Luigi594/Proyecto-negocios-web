@@ -15,12 +15,12 @@ class Carritos extends Table
         );
     }
 
-    public static function obtenerPorId($clienteId)
+    public static function obtenerPorId($id)
     {
-        $sqlstr = "select * from carrito where clienteId=:clienteId;";
+        $sqlstr = "select * from carrito where id=:id;";
         return self::obtenerUnRegistro(
             $sqlstr,
-            array("clienteId"=>$clienteId)
+            array("id"=>$id)
         );
     }
 
@@ -63,14 +63,13 @@ class Carritos extends Table
         );
     }
 
-    public static function eliminarItemCarrito($clienteId, $productoId)
+    public static function eliminarItemCarrito($id)
     {
-        $sqlstr = "DELETE FROM carrito where clienteId=:clienteId && productoId=:productoId;";
+        $sqlstr = "DELETE FROM carrito where id=:id";
         return self::executeNonQuery(
             $sqlstr,
             array(
-                "clienteId"=>$clienteId,
-                "productoId"=>$productoId
+                "id"=>$id,
             )
         );
     }

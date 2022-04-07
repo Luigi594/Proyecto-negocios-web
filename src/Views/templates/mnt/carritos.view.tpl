@@ -23,7 +23,7 @@
       <td>{{precio}}</td>
       <td>{{fechahora}}</td>
       <td>
-        <a href="">Eliminar</a>
+       <a href="index.php?page=mnt.carritos.carrito&mode=DEL&id={{id}}">Eliminar</a>
       </td>
     </tr>
     {{endfor carritos}}
@@ -45,7 +45,7 @@
     </form>
 
    <fieldset class="row flex-center">
-            <button type="submit" name="btnConfirmar" class="btn primary">Confirmar</button>&nbsp;&nbsp;&nbsp;
+            <button type="submit" name="btnConfirmar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
             <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
    </fieldset>        
 </section>
@@ -58,7 +58,7 @@
         btnCancelar.addEventListener("click", (e) => {
             e.preventDefault();
             e.stopPropagation();
-            window.location.assign("index.php?page=mnt.");
+            window.location.assign("index.php?page=mnt.catalogos.catalogos");
         })
     });
 </script>

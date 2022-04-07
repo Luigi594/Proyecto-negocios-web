@@ -4,10 +4,11 @@
     <table>
         <thead>
             <tr>
-                <th>Id</td>
-                <th>Nombre</td>
-                <th>Descripcion</td>
-                <th>Precio</td>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
