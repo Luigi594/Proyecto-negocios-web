@@ -18,7 +18,7 @@
                     <td>{{descripcion}}</td>
                     <td>{{precio}}</td>
                     <td>
-                        <a href="index.php?page=mnt.catalogos.catalogo&mode=INS&idProducto={{idProducto}}">Agregar</a>
+                        <a href="index.php?page=mnt.catalogos.catalogo&mode=DSP&idProducto={{idProducto}}">Agregar</a>
                     </td>
                 </tr>
             {{endfor productos}}

@@ -24,9 +24,9 @@ class Carritos extends Table
         );
     }
 
-    public static function nuevoCarrito($clienteId, $productoId, $cantidad, $precio, $fechahora)
+    public static function nuevoCarrito($clienteId, $productoId, $cantidad, $precio)
     {
-        $sqlstr= "INSERT INTO carrito (clienteId, productoId, cantidad, precio, fechahora) values (:clienteId, :productoId, :cantidad, :precio, :fechahora);";
+        $sqlstr= "INSERT INTO carrito (clienteId, productoId, cantidad, precio, fechahora) values (:clienteId, :productoId, :cantidad, :precio, now());";
         return self::executeNonQuery(
             $sqlstr,
             array(
@@ -34,7 +34,6 @@ class Carritos extends Table
                 "productoId"=>$productoId,
                 "cantidad"=>$cantidad,
                 "precio"=> $precio,
-                "fechahora"=> $fechahora,
             )
         );
     }

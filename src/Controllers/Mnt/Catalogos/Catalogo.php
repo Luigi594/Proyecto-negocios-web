@@ -8,16 +8,18 @@ use Views\Renderer;
 
 class Catalogo extends PublicController{
     private $_modeStrings = array(
-        "INS" => "Agregar al carrito"
+        "DSP" => "Agregar al carrito"
     );
     private $_viewData = array(
-        "mode" => "INS",
+        "mode" => "DSP",
+        "clienteId" => "1",
         "idProducto" => 0,
         "nombre" =>"",
         "descripcion" =>"",
         "precio" =>"",
         "modeDsc" =>"",
-        "readonly" => false,
+        "isRead" => true,
+        "readonly" => "readonly",
         "isInsert" => false,
         "isViewMode" => false,
         "crsxToken"=>""
@@ -55,13 +57,13 @@ class Catalogo extends PublicController{
         $this->_viewData["idProducto"] = intval($this->_viewData["idProducto"], 10);
         
             unset($_SESSION["producto_crsxToken"]);
-            switch ($this->_viewData["mode"]){ 
-            case 'INS':
-                $result = \Dao\Mnt\Catalogos:: obtenerPorProId(
-                    $this->_viewData["nombre"],
-                    $this->_viewData["descripcion"],
-                    $this->_viewData["precio"],
-                    $this->_viewData["idProducto"]
+            if($this->_viewData["mode"]){ 
+            
+                $result = \Dao\Mnt\Carritos\Carritos::nuevoCarrito(
+                    $this->_viewData["clienteId"],
+                    $this->_viewData["idProducto"],
+                    $this->_viewData["cantidad"],
+                    $this->_viewData["precio"]
                 );
                 if($result){
                     \Utilities\Site::redirectToWithMsg(
@@ -69,31 +71,21 @@ class Catalogo extends PublicController{
                         "Agregando Al catalogo"
                     );
                 }
-            break;  
-            
             }
            
     }
 
     private function prepareViewData(){
-        if($this->_viewData["mode"] == "INS"){
-
-            // si es insertar que no muestre el id
-            $this -> viewData["isViewMode"] = true;
-            
-            $this->_viewData["modeDsc"] = 
-                $this->_modeStrings[$this->_viewData["mode"]];
-        }else{
-            $tmpProducto = \Dao\Mnt\Catalogos::obtenerPorProId(intval($this->_viewData["idProducto"], 10));
-            \Utilities\ArrUtils::mergeFullArrayTo($tmpProducto, $this->_viewData);
-            $this->_viewData["modeDsc"] = sprintf(
-                $this->_modeStrings[$this->_viewData["mode"]],
-                $this->_viewData["nombre"],
-                $this->_viewData["idProducto"]
-            );
-        }
-       
-
+        
+        $tmpProducto = \Dao\Mnt\Catalogos::obtenerPorProId(
+            intval($this -> _viewData["idProducto"], 10)
+        );
+        
+        \Utilities\ArrUtils::mergeFullArrayTo($tmpProducto, $this->_viewData);
+        $this->_viewData["modeDsc"] = sprintf(
+            $this->_modeStrings[$this->_viewData["mode"]],
+        );
+        
         $this->_viewData["crsxToken"] = md5(time()."producto");
         $_SESSION["producto_crsxToken"] = $this->_viewData["crsxToken"];
     }
