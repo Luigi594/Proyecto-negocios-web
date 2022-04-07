@@ -30,22 +30,14 @@
   </tbody>
   </table>
   <form class="d-flex flex-column align-items-end" action="index.php?page=checkout_checkout" method="post">
-        <div class="form-group col-md-2">
-            <label for="CarritoSubtotal" class="font-weight-bold">Subtotal: </label>
-            <input type="text" readonly class="form-control" id="CarritoSubtotal" value="{{Subtotal}}">
-        </div>
-        <div class="form-group col-md-2">
-            <label for="CarritoISV" class="font-weight-bold">ISV: </label>
-            <input type="text" readonly class="form-control" id="CarritoISV" value="{{Subtotal}}">
-        </div>
-        <div class="form-group col-md-2">
-            <label for="CarritoTotal" class="font-weight-bold">Total: </label>
-            <input type="text" readonly class="form-control" id="CarritoTotal" value="{{Total}}">
-        </div>
-
         <fieldset class="row flex-center">
-            <button type="submit" name="btnProcesar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
+
+            <div class="col-xs-12 mt-5">
+                <div class="center-block">
+                    <button type="submit" name="btnConfirmar" class="btn primary">Confirmar</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
+                </div> 
+            </div>
         </fieldset>
     </form>           
 </section>

@@ -47,8 +47,13 @@
         </fieldset>
 
         <fieldset class="row flex-center">
-            <button type="submit" name="btnConfirmar" class="btn primary">Confirmar</button>&nbsp;&nbsp;&nbsp;
-            <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
+
+            <div class="col-xs-12 mt-5">
+                <div class="center-block">
+                    <button type="submit" name="btnConfirmar" class="btn primary">Confirmar</button>&nbsp;&nbsp;&nbsp;
+                    <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
+                </div> 
+            </div>
         </fieldset>        
     </form>
 </section>
