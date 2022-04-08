@@ -22,6 +22,17 @@ class Validators {
         return preg_match($regex, $valor) && true;
     }
 
+    
+    public static function ValidarSoloLetras($valor)
+    {
+        return preg_match("/^[a-zA-ZÁÉÍÓÚÜÑáéíóúüñ\s]*$/", $valor);  
+    }
+    
+    public static function ValidarNumeros($valor)
+    {
+        return preg_match("/^[0-9]*$/", $valor);
+    }
+    
     private function __construct()
     {
         

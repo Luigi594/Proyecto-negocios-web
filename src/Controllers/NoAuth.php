@@ -5,17 +5,24 @@ class NoAuth extends PublicController
 {
     public function run() :void
     {
-        if (\Utilities\Security::isLogged()){
-            if (\Utilities\Context::getContextByKey("PRIVATE_LAYOUT") !== "") {
+        if (\Utilities\Security::isLogged())
+        {
+            \Utilities\Nav::setNavContext();
+            if (\Utilities\Context::getContextByKey("PRIVATE_LAYOUT") !== "") 
+            {
                 \Views\Renderer::render(
                     "noauth",
                     array(),
                     \Utilities\Context::getContextByKey("PRIVATE_LAYOUT")
                 );
-            } else {
+            } 
+            else 
+            {
                 \Views\Renderer::render("noauth", array());
             }
-        } else {
+        } 
+        else 
+        {
             \Views\Renderer::render("noauth", array());
         }
     }
