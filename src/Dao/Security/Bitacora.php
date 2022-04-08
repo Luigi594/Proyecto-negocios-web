@@ -6,7 +6,7 @@ class Bitacora extends \Dao\Table
 {
 
     /*
-INSERT INTO `globalshophn`.`bitacora`
+INSERT INTO `sorburger_negocios`.`bitacora`
 (`BitacoraId`,
 `BitacoraFch`,
 `BitacoraPrograma`,

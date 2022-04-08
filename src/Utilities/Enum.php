@@ -2,6 +2,9 @@
 
 namespace Utilities;
 
+use League\Flysystem\NotSupportedException;
+use ReflectionClass;
+
 abstract class Enum
 {
     const NONE = null;

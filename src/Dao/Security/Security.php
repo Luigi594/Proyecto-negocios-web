@@ -182,13 +182,6 @@
             return self::obtenerUnRegistro($sqlstr, array("UsuarioId"=>$UsuarioId));
         }
 
-        static public function getUsuarioByEmail($UsuarioEmail)
-        {
-            $sqlstr = "SELECT * FROM `usuarios` where `UsuarioEmail` = :UsuarioEmail ;";
-            $params = array("UsuarioEmail"=>$UsuarioEmail);
-
-            return self::obtenerUnRegistro($sqlstr, $params);
-        }
 
         public static function getUsuarioDifferbyEmail($UsuarioId, $UsuarioEmail)
         {
@@ -203,6 +196,14 @@
                 $UsuarioPswd,
                 \Utilities\Context::getContextByKey("PWD_HASH")
             );
+        }
+        
+        static public function getUsuarioByEmail($UsuarioEmail)
+        {
+            $sqlstr = "SELECT * FROM `usuarios` where `UsuarioEmail` = :UsuarioEmail ;";
+            $params = array("UsuarioEmail"=>$UsuarioEmail);
+
+            return self::obtenerUnRegistro($sqlstr, $params);
         }
 
         static private function _hashPassword($password)

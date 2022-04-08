@@ -1,1 +1,0 @@
-CREATE SCHEMA `sorburgers_negocios` ;

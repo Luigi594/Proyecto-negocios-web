@@ -5,6 +5,7 @@ class Login extends \Controllers\PublicController
     private $txtEmail = "";
     private $txtPswd = "";
     private $errorEmail = "";
+    private $errorIncor = "";
     private $errorPswd = "";
     private $generalError = "";
     private $hasError = false;
@@ -17,6 +18,10 @@ class Login extends \Controllers\PublicController
 
             if (!\Utilities\Validators::IsValidEmail($this->txtEmail)) {
                 $this->errorEmail = "¡Correo no tiene el formato adecuado!";
+                $this->hasError = true;
+            }
+            if (\Utilities\Validators::IsEmpty($this->txtEmail)) {
+                $this->errorIncor = "¡Debe ingresar un correo válido!";
                 $this->hasError = true;
             }
             if (\Utilities\Validators::IsEmpty($this->txtPswd)) {
@@ -68,12 +73,6 @@ class Login extends \Controllers\PublicController
                             "ERROR: %s trato de ingresar",
                             $this->txtEmail
                         )
-                    );
-                    \Dao\Security\Bitacora::insert(
-                        "globalshophn",
-                        "ERROR: ".$this->txtEmail." trato de ingresar",
-                        "ACT",
-                        $dbUser["UsuarioId"]
                     );
                     $this->generalError = "¡Credenciales son incorrectas!";
                 }
