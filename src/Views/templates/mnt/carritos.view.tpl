@@ -6,7 +6,7 @@
     <tr>
       <th>Código</th>
       <th>Cliente Id</th>
-      <th>Producto Id</th>
+      <th>Producto</th>
       <th>Cantidad</th>
       <th>Precio</th>
       <th>Fecha/Hora</th>
@@ -29,17 +29,20 @@
     {{endfor carritos}}
   </tbody>
   </table>
+
+  {{if carritos}}
   <form class="d-flex flex-column align-items-end" action="index.php?page=checkout_checkout" method="post">
         <fieldset class="row flex-center">
-
             <div class="col-xs-12 mt-5">
                 <div class="center-block">
-                    <button type="submit" name="btnConfirmar" class="btn primary">Confirmar</button>&nbsp;&nbsp;&nbsp;
+                    <button type="submit" name="btnProcesar" class="btn primary">Procesar Orden</button>&nbsp;&nbsp;&nbsp;
                     <button type="button" id="btnCancelar" class="btn danger">Cancelar</button>
                 </div> 
             </div>
         </fieldset>
-    </form>           
+    </form>       
+
+    {{endif carritos}}    
 </section>
 
 <script>

@@ -84,7 +84,7 @@ class Carrito extends PublicController
                 if ($result) {
                     $_SESSION["carrito_crsxToken"] = "";
                     \Utilities\Site::redirectToWithMsg(
-                        'index.php?page=mnt.catalogos.catalogos',
+                        'index.php?page=mnt.carritos.carritos',
                         "¡Item eliminado satisfactoriamente!"
                     );
                 }
