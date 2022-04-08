@@ -11,10 +11,6 @@ class Register extends PublicController
     private $txtNombre = "";
     private $txtEmail = "";
     private $txtPswd = "";
-    private $errorGeneral = "";
-    private $errorNombre = "";
-    private $errorEmail ="";
-    private $errorPswd = "";
     private $hasErrors = false;
     public function run() :void
     {

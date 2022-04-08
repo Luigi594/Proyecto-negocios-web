@@ -5,25 +5,6 @@ namespace Dao\Security;
 class Bitacora extends \Dao\Table
 {
 
-    /*
-INSERT INTO `sorburger_negocios`.`bitacora`
-(`BitacoraId`,
-`BitacoraFch`,
-`BitacoraPrograma`,
-`BitacoraDescripcion`,
-`BitacoraObservacion`,
-`BitacoraTipo`,
-`BitacoraUsuario`)
-VALUES
-(<{BitacoraId: }>,
-<{BitacoraFch: }>,
-<{BitacoraPrograma: }>,
-<{BitacoraDescripcion: }>,
-<{BitacoraObservacion: }>,
-<{BitacoraTipo: }>,
-<{BitacoraUsuario: }>);
-
- */
 
     public static function insert($BitacoraPrograma, $BitacoraDescripcion, $BitacoraTipo, $BitacoraUsuario)
     {

@@ -34,7 +34,7 @@ class Login extends \Controllers\PublicController
                         $this->generalError = "¡Credenciales son incorrectas!";
                         $this->hasError = true;
                         \Dao\Security\Bitacora::insert(
-                            "globalshophn", 
+                            "sorburgers", 
                             "ERROR: ". $dbUser["UsuarioId"] ." ". $dbUser["UsuarioEmail"]." tiene cuenta con estado ".$dbUser["UsuarioEst"],
                             "ACT",
                             $dbUser["UsuarioId"]
@@ -44,7 +44,7 @@ class Login extends \Controllers\PublicController
                         $this->generalError = "¡Credenciales son incorrectas!";
                         $this->hasError = true;
                         \Dao\Security\Bitacora::insert(
-                            "globalshophn",
+                            "sorburgers",
                             "ERROR: ". $dbUser["UsuarioId"] ." ". $dbUser["UsuarioEmail"]." contraseña incorrecta",
                             "ACT",
                             $dbUser["UsuarioId"]
